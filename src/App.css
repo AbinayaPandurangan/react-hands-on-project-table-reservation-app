@@ -55,6 +55,10 @@ nav .leadtext {
   font-weight: normal;
   color: #f4ce14;
 }
+
+.testimonials .displaytitle {
+  margin: 2rem 0 0 0;
+}
 .subtitle {
   font-family: "Markazi Text";
   font-size: 40px;
@@ -79,6 +83,9 @@ nav .leadtext {
   font-weight: 400;
   line-height: normal;
   font-stretch: expanded;
+}
+
+.card .para {
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -89,23 +96,48 @@ nav .leadtext {
 /* font styles */
 
 .button {
-  width: 200px;
+  width: 220px;
   height: 50px;
   text-align: center;
   border-radius: 16px;
   box-shadow: none;
   margin: 2rem 0 2rem 0;
   border-style: none;
+  cursor: pointer;
+}
+.button.primary:hover {
+  background-color: #ee9972;
+}
+.button.secondary:hover {
+  background-color: #ee9972;
+}
+.button.primary:disabled {
+  color: gray !important;
+  cursor: not-allowed;
+  background-color: #f4ce14;
 }
 .button.primary {
   background-color: #f4ce14;
   color: #000;
 }
+.button.secondary {
+  background-color: #495e57;
+  color: #fff;
+  text-decoration: none;
+}
+
+a.button.secondary {
+  padding: 0.8rem;
+  margin: 0 -0.5rem 0 -0.5rem;
+  font-weight: 400;
+}
+
 /* navigation bar */
 nav {
   background-color: white;
   box-shadow: 1px 1px 4px #495e57;
   margin-top: -1rem;
+  z-index: 10;
 }
 @media (max-width: 440px) {
   nav .container {
@@ -175,16 +207,9 @@ nav .active {
 
 /* footer */
 
-.group img {
-  width: 100%;
-  object-fit: cover;
-  margin: auto;
-  justify-self: center;
-}
 footer {
   background-color: #495e57;
   color: white;
-  margin-top: 1rem;
   margin-bottom: 0;
 }
 
@@ -193,6 +218,12 @@ footer {
     grid-template-columns: auto;
     grid-template-rows: auto auto auto auto;
     grid-template-areas: "div" "div" "div" "div";
+  }
+  footer img {
+    width: 60%;
+    object-fit: cover;
+    margin: auto;
+    justify-self: center;
   }
 }
 
@@ -206,8 +237,15 @@ footer {
 
 @media (min-width: 1280px) {
   footer .container {
-    grid-template-columns: 0.7fr 1fr 1fr 1fr;
+    grid-template-columns: 0.6fr 1fr 1fr 1fr;
     grid-template-areas: "div div div div";
+  }
+  .group img {
+    width: 100%;
+    height: 83%;
+    object-fit: cover;
+    margin: auto;
+    justify-self: center;
   }
 }
 
@@ -217,7 +255,7 @@ footer div {
   text-align: left;
 }
 .group {
-  margin: 0 3rem;
+  margin: 0 1.5rem;
   display: grid;
 }
 
@@ -225,6 +263,10 @@ footer ul {
   list-style: none;
   padding: 0;
   margin: 0;
+}
+
+#textwithspace {
+  padding-left: 1.5rem;
 }
 footer li {
   padding: 0.5rem 0;
@@ -234,6 +276,9 @@ footer li {
 footer a {
   color: white;
   text-decoration: none;
+}
+footer span {
+  padding: 0.5rem;
 }
 
 footer a:visited {
@@ -379,7 +424,7 @@ footer .active {
   background-color: #edefee;
   border-radius: 16px;
   box-shadow: 1px 1px 4px #495e57;
-  margin: 1rem;
+  margin: 1rem 1rem 2rem 1rem;
 }
 .card img {
   width: 100%;
@@ -409,9 +454,229 @@ footer .active {
   padding: 0 2rem;
 }
 
+.testimonials {
+  background-color: #495e57;
+  text-align: center;
+  padding: 0 0 2rem 0;
+}
 .testimonials img {
-  width: 30px;
-  height: 30px;
+  width: 79px;
+  height: 79px;
   object-fit: cover;
   border-radius: 50%;
+  padding: 0.5rem;
+}
+.testicard {
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 0.5fr 1fr;
+  grid-template-areas: "div div";
+  background-color: #edefee;
+  color: #000;
+  padding: 2rem;
+  margin: 1rem 1rem 2rem 1rem;
+  box-shadow: 1px 1px 6px #000;
+}
+.testicard .leadtext {
+  margin: 0.5rem;
+}
+
+@media (max-width: 440px) {
+  .testimonials .container {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas: "div" "div" "div" "div";
+  }
+}
+
+@media (min-width: 441px) and (max-width: 1279px) {
+  .testimonials .container {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "div div" "div div";
+  }
+}
+
+@media (min-width: 1280px) {
+  .testimonials .container {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "div div" "div div";
+    column-gap: 2rem;
+  }
+}
+
+@media (max-width: 440px) {
+  .about .container {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas: "div" "div";
+    padding-left: 1rem;
+  }
+}
+
+@media (min-width: 441px) and (max-width: 1279px) {
+  .about .container {
+    grid-template-columns: auto auto;
+    grid-template-areas: "div div";
+  }
+}
+
+@media (min-width: 1280px) {
+  .about .container {
+    grid-template-columns: auto auto;
+    grid-template-areas: "div div";
+    column-gap: 2rem;
+  }
+}
+
+.about .content {
+  padding: 0 0.5rem;
+}
+.about img {
+  width: 65%;
+  height: auto;
+  border-radius: 16px;
+  margin: 1rem 1rem 2rem 1rem;
+  box-shadow: 1px 1px 6px #000;
+}
+.about .image {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.5fr;
+  grid-template-areas: "img" "img";
+  margin-top: 3rem;
+  padding-right: 0.5rem;
+}
+
+.reservations .image {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.75fr 1fr 0.75fr 1fr 0.75fr 1fr 0.75fr 1fr;
+  grid-template-areas: "img" "img";
+  padding-right: 0.5rem;
+  margin: 3rem 2rem;
+}
+.reservations img {
+  width: 65%;
+  height: 12rem;
+  border-radius: 16px;
+  box-shadow: 1px 1px 6px #000;
+  opacity: 0.7;
+  object-fit: cover;
+}
+.oddimg {
+  margin-top: -10%;
+}
+.secondimg {
+  justify-self: end;
+  margin: -15% 0 0 0;
+}
+#secondimg {
+  justify-self: end;
+  margin: -25% 0 0 0;
+}
+
+@media (max-width: 440px) {
+  .reservations .container {
+    grid-template-columns: 90%;
+    grid-template-rows: 1fr 0.01fr;
+    grid-template-areas: "div" "div";
+  }
+  .reservations .buttons {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+}
+.reservations {
+  background-color: #edefee;
+  z-index: -10;
+  position: relative;
+}
+
+@media (min-width: 441px) and (max-width: 1279px) {
+  .reservations .container {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: "logo menu" ". menu";
+  }
+}
+
+@media (min-width: 1280px) {
+  .reservations .container {
+    display: grid;
+    width: 1200px;
+    margin: auto;
+    grid-template-columns: 60% 20%;
+    column-gap: 10%;
+  }
+  .reservations .buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+  }
+}
+.bookingpage {
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: auto;
+}
+.cartitle {
+  padding: 1rem 0;
+}
+.formContainer {
+  background-color: #fff;
+  padding: 0 1rem;
+  margin: 0 1rem;
+  z-index: -1;
+  box-shadow: 1px 1px 4px #edefee;
+}
+
+.guestsRadio {
+  display: grid;
+  row-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-bottom: 1rem;
+}
+
+.inputBox {
+  height: 40px;
+  border-radius: 16px;
+  background-color: #edefee;
+  border-style: none;
+  margin: 0.5rem -0.5rem 2rem -0.5rem;
+  padding: 0 1rem;
+}
+
+.container2 {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.dropdown:checked {
+  color: #fff;
+  background-color: #495e57;
+}
+
+.personalDetails .container3 {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+.personalDetails {
+  padding: 0.5rem;
+}
+
+.personalDetails .subtitle {
+  margin: 1rem 0;
+}
+
+.container3 input {
+  margin: 0;
+}
+.container3 input ~ p {
+  margin-top: 0;
+}
+.confirmation.subtitle {
+  margin-top: 3rem;
 }

@@ -2,7 +2,8 @@ import "./App.css";
 import { Routes, Route, Link } from "react-router-dom";
 import mainlogo from "./assets/Logo.svg";
 import Homepage from "./components/Homepage";
-import BookingPage from "./components/BookingPage ";
+import BookingPage from "./components/ReservationPage";
+import ConfirmationPage from "./components/ConfirmationPage";
 import Footer from "./components/Footer";
 
 function App() {
@@ -22,7 +23,7 @@ function App() {
       <nav>
         <div className="container">
           <Link to="/" className="nav-item">
-            <img src={mainlogo} />
+            <img src={mainlogo} alt="" />
           </Link>
 
           <ul className="leadtext">
@@ -32,22 +33,24 @@ function App() {
               </Link>
             </li>
             <li>
-              <a href=" /#about" onClick={handleClick("about")}>
+              <a href="/#about" onClick={handleClick("about")}>
                 About
               </a>
             </li>
             <li>
-              <a href=" /#menu" onClick={handleClick("menu")}>
+              <a href="/#menu" onClick={handleClick("menu")}>
                 Menu
               </a>
             </li>
             <li>
-              <Link to="/booking" className="nav-item">
+              <Link to="/booking/bookingform" className="nav-item">
                 Reservation
               </Link>
             </li>
             <li>
-              <a href="">Order Online</a>
+              <a href="" className="button secondary buttontxt">
+                Order Online
+              </a>
             </li>
             <li>
               <a href="">Login</a>
@@ -57,8 +60,13 @@ function App() {
       </nav>
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
-        <Route path="/booking" element={<BookingPage />}></Route>
+        <Route path="/booking/bookingform" element={<BookingPage />}></Route>
+        <Route
+          path="/booking/confirmationpage"
+          element={<ConfirmationPage />}
+        ></Route>
       </Routes>
+
       <Footer />
     </>
   );
