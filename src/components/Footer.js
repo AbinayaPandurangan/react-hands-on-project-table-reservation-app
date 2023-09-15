@@ -1,4 +1,4 @@
-import logo from "../assets/logo-white.png";
+import logo from "./homeAssets/logo-white.png";
 import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
