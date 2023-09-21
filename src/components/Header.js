@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import mainlogo from "./homeAssets/Logo.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +16,46 @@ function Header() {
       });
     }
   };
+  const THRESHOLD = 0;
+
+  const ScrollDirection = ({ render }) => {
+    const [scrollDirection, setScrollDirection] = useState("up");
+
+    const blocking = useRef(false);
+    const prevScrollY = useRef(0);
+
+    useEffect(() => {
+      prevScrollY.current = window.pageYOffset;
+
+      const updateScrollDirection = () => {
+        const scrollY = window.pageYOffset;
+
+        if (Math.abs(scrollY - prevScrollY.current) >= THRESHOLD) {
+          const newScrollDirection =
+            scrollY > prevScrollY.current ? "down" : "up";
+
+          setScrollDirection(newScrollDirection);
+
+          prevScrollY.current = scrollY > 0 ? scrollY : 0;
+        }
+
+        blocking.current = false;
+      };
+
+      const handleScroll = () => {
+        if (!blocking.current) {
+          blocking.current = true;
+          window.requestAnimationFrame(updateScrollDirection);
+        }
+      };
+
+      window.addEventListener("scroll", handleScroll);
+
+      return () => window.removeEventListener("scroll", handleScroll);
+    }, [scrollDirection]);
+
+    return render({ scrollDirection });
+  };
 
   function toggleHamburgerMenu() {
     sethamburgerMenu(!isHamburgerMenuOpen);
@@ -23,45 +63,68 @@ function Header() {
 
   return (
     <>
-      <nav className="laptopNavBar">
-        <div className="container">
-          <Link to="/" className="nav-item">
-            <img src={mainlogo} alt="" />
-          </Link>
-
-          <ul className="leadtext">
-            <li>
+      <ScrollDirection
+        render={({ scrollDirection }) => (
+          <nav
+            className="laptopNavBar"
+            style={
+              scrollDirection === "up"
+                ? {
+                    position: "fixed",
+                    translateX: "translateY(0px)",
+                    transitionProperty: "transform",
+                    transitionDuration: ".8s",
+                    transitionTimingFunction: "ease-in-out",
+                  }
+                : {
+                    position: "static",
+                    translateX: "translateY(-200px)",
+                    transitionProperty: "transform",
+                    transitionDuration: ".8s",
+                    transitionTimingFunction: "ease-in-out",
+                  }
+            }
+          >
+            <div className="container">
               <Link to="/" className="nav-item">
-                Home
+                <img src={mainlogo} alt="" />
               </Link>
-            </li>
-            <li>
-              <a href="/#about" onClick={handleClick("about")}>
-                About
-              </a>
-            </li>
-            <li>
-              <a href="/#menu" onClick={handleClick("menu")}>
-                Menu
-              </a>
-            </li>
-            <li>
-              <Link to="/booking/bookingform" className="nav-item">
-                Reservation
-              </Link>
-            </li>
-            <li>
-              <a href="" className="button secondary buttontxt">
-                Order Online
-              </a>
-            </li>
-            <li>
-              <a href="">Login</a>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <nav>
+
+              <ul className="leadtext">
+                <li>
+                  <Link to="/" className="nav-item">
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <a href="/#about" onClick={handleClick("about")}>
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="/#menu" onClick={handleClick("menu")}>
+                    Menu
+                  </a>
+                </li>
+                <li>
+                  <Link to="/booking/bookingform" className="nav-item">
+                    Reservation
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/error" className="button secondary buttontxt">
+                    Order Online
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/error">Login</Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        )}
+      />
+      <nav className="mobNav">
         <div className="mobileNavBar">
           <Link to="/" className="nav-item">
             <img src={mainlogo} alt="" />
@@ -102,14 +165,12 @@ function Header() {
                 </Link>
               </li>
               <li onClick={toggleHamburgerMenu}>
-                <a href="" className="button secondary buttontxt nav-item">
+                <Link to="/error" className="button secondary buttontxt">
                   Order Online
-                </a>
+                </Link>
               </li>
               <li onClick={toggleHamburgerMenu}>
-                <a href="" className="nav-item">
-                  Login
-                </a>
+                <Link to="/error">Login</Link>
               </li>
             </ul>
           </div>
