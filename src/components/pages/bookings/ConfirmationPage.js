@@ -14,6 +14,7 @@ function ConfirmationPage() {
               you via your email!
             </p>
             <p>Kindly contact us if you need to change your reservation!</p>
+                <div className="space"></div>
 
             <div className="buttons">
               <button
