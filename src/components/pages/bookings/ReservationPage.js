@@ -150,7 +150,7 @@ function BookingPage() {
                 <button
                   className="button secondary buttontxt"
                   onClick={() => {
-                    navigate(-1);
+                    navigate("/");
                   }}
                 >
                   Back
