@@ -1,4 +1,4 @@
-## install the node module - npm install
+# Install the node module - npm install
 
 Kindly install the node modules using npm install
 
