@@ -720,3 +720,6 @@ select ~ label {
 .confirmation.subtitle {
   margin-top: 3rem;
 }
+.space {
+  height: 3rem;
+}
