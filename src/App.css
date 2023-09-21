@@ -5,10 +5,13 @@
 @media (max-width: 440px) {
   .container {
     display: grid;
-    margin: 1rem;
+    margin: 0 1rem;
   }
   .laptopNavBar {
     display: none;
+  }
+  .mobNav {
+    position: fixed;
   }
   .mobileNavBar {
     display: flex;
@@ -434,7 +437,7 @@ nav {
   box-shadow: 1px 1px 4px #495e57;
   margin-top: -1rem;
   z-index: 100;
-  position: relative;
+  width: 100%;
 }
 
 nav img {
@@ -527,6 +530,7 @@ footer .active {
 .feature {
   background-color: #495e57;
   color: white;
+  margin-top: 5rem;
 }
 
 .featurecontent {
@@ -637,8 +641,8 @@ footer .active {
 
 .reservations {
   background-color: #edefee;
-
   position: relative;
+  margin-top: 7rem;
 }
 
 .bookingpage {
@@ -722,4 +726,15 @@ select ~ label {
 }
 .space {
   height: 3rem;
+}
+
+.error {
+  margin-top: 9rem;
+  margin-bottom: 3rem;
+  align-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+.error img {
+  margin: 3rem auto 0 auto;
+  width: 90%;
 }

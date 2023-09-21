@@ -5,6 +5,7 @@ import BookingPage from "./components/pages/bookings/ReservationPage";
 import ConfirmationPage from "./components/pages/bookings/ConfirmationPage";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Error from "./components/pages/error";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           path="/booking/confirmationpage"
           element={<ConfirmationPage />}
         ></Route>
+        <Route path="/error" element={<Error />}></Route>
       </Routes>
 
       <Footer />
